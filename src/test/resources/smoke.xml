@@ -2,7 +2,7 @@
 <suite name="Tests">
     <test name="Testname">
         <classes>
-            <class name="UseTestNgAnnotationTest"/>
+            <class name="UseTestNGAttributeTest"/>
         </classes>
     </test>
 </suite>
