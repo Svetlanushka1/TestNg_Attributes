@@ -30,7 +30,7 @@ public class BinarySearch {
     }
 
     // Driver code
-    public static void main(String[] args)
+  /*  public static void main(String[] args)
     {
         BinarySearch ob = new BinarySearch();
         int[] arr = { 2, 3, 4, 10, 40 };
@@ -40,5 +40,5 @@ public class BinarySearch {
             System.out.println("Element is not present in array");
         else
             System.out.print("\nElement is present at index " + result + "\n");
-    }
+    }*/
 }

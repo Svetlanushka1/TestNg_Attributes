@@ -2,6 +2,7 @@ import org.example.BinarySearch;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import java.lang.reflect.Method;
 
 public class BinarySearchTest {
     @DataProvider(name="testData")
@@ -27,8 +28,7 @@ public class BinarySearchTest {
 
         };
     }
-
-    @Test(dataProvider = "testData")
+    @Test(groups = {"functest", "second-group"},dataProvider = "testData", description = "Functionality test")
     public void testArr1000Func(int arr_size, int x, int expected_element) {
         int[] arr = new int[arr_size + 1];
         for (int z = 0; z <= arr_size; z++) {
@@ -39,19 +39,19 @@ public class BinarySearchTest {
         Assert.assertEquals(result, expected_element);
     }
 
-    @Test(groups = {"perftest", "checkintest"}, dataProvider = "testDataTime")
-    public void testArr1000Perf(int arr_size, int x, int expected_time) {
+    @Test(groups = {"perftest", "checkintest"}, dataProvider = "testDataTime", priority = 1, threadPoolSize = 3, invocationCount = 1,  timeOut = 10000)
+    public void testArr1000Perf(int arr_size, int x, int expected_time, Method method) {
+        BinarySearch bs = new BinarySearch();
         int[] arr = new int[arr_size + 1];
         for (int z = 0; z <= arr_size; z++) {
             arr[z] = z;
         }
-        BinarySearch ob = new BinarySearch();
         long start = System.nanoTime();
-        int result = ob.binarySearch(arr, x);
+        bs.binarySearch(arr, 5);
         long end = System.nanoTime();
         long diff = end - start;
         System.out.println(start + " " + end + " " + diff);
         Assert.assertTrue(diff < expected_time, "diff lower than expected");
     }
-
 }
+
